@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Weather</title>
+    <link rel="icon" href="/img/weather.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    
+</head>
+
+<body>
+    <div class="main-content">
+        {{>header}}
+
+        <p id="message">Use this site to get your weather!</p>
+        <p id="message-1"></p>
+
+        <form  id="form">
+            <input type="text" placeholder="Location">
+            <button>Search</button>
+        </form>
+    </div>
+
+    {{>footer}}
+    <script>
+const messageOne = document.querySelector('#message-1')
+const input = document.querySelector('form')
+const search = document.querySelector('input')
+
+input.addEventListener('submit',(e)=>{
+    messageOne.textContent = ''
+    e.preventDefault()
+    const req = search.value
+    
+    fetch(`/weather/?address=${req}`).then((response) => {
+        
+    response.json().then((data) => {
+        
+        
+        if(data.error) {console.log('can not fetch the data'); messageOne.textContent = 'Wrong input'}
+        else messageOne.textContent = 'The weather in '+ data.location.name+' is ' + data.current.temperature        
+    })
+}).catch((err) => { console.log(err) })
+})
+    </script>
+    
+</body>
+
+</html>
