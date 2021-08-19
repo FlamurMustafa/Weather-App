@@ -3,6 +3,9 @@
     "version": "1.0.0",
     "description": "",
     "main": "app.js",
+    "engines": {
+        "node": "14.7.3"
+    },
     "scripts": {
         "start": "node web-server/src/app.js"
 
