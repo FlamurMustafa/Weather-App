@@ -7,8 +7,8 @@
         "node": "14.17.3"
     },
     "scripts": {
-        "start": "node app.js"
-
+        "start": "node web-server/src/app.js",
+        "dev": "nodemon source ./web-server/src/app.js -e js,hbs"
     },
     "keywords": [],
     "author": "",
